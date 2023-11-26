@@ -34,13 +34,11 @@ def test(net, loader_test):
 
 
 def train(loader_train, froze_flag, loader_test, net, optimizer, criterion):
-
-    #  ------------- 冻结模型中Unet部分的参数 ---------------
+    
     if froze_flag:
         for k,v in net.named_modules():
             if 'backbone' in k:
                 v.requires_grad = False
-    #  ------------------------------------------------
 
     max_ssim = 0
     max_psnr = 0
